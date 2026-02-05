@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="dawnGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#334155;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#64748b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="roadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#475569;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="800" height="400" fill="url(#dawnGradient)"/>
+  
+  <!-- Mountain silhouette -->
+  <path d="M0 300 L150 200 L300 280 L450 180 L600 250 L800 220 L800 400 L0 400 Z" fill="#1e293b"/>
+  
+  <!-- Road -->
+  <path d="M0 350 Q400 340 800 350 L800 400 L0 400 Z" fill="url(#roadGradient)"/>
+  
+  <!-- Road lines -->
+  <line x1="0" y1="375" x2="800" y2="375" stroke="#F59E0B" stroke-width="4" stroke-dasharray="30 20"/>
+  
+  <!-- Truck silhouette from behind -->
+  <rect x="300" y="290" width="200" height="80" rx="8" fill="#1E293B"/>
+  <rect x="310" y="300" width="80" height="40" rx="4" fill="#F59E0B"/>
+  <rect x="315" y="305" width="70" height="30" rx="2" fill="#93C5FD"/>
+  
+  <!-- Truck lights -->
+  <rect x="305" y="345" width="15" height="8" rx="2" fill="#EF4444"/>
+  <rect x="480" y="345" width="15" height="8" rx="2" fill="#EF4444"/>
+  
+  <!-- Truck wheels -->
+  <circle cx="360" cy="375" r="22" fill="#374151"/>
+  <circle cx="360" cy="375" r="12" fill="#1E293B"/>
+  <circle cx="440" cy="375" r="22" fill="#374151"/>
+  <circle cx="440" cy="375" r="12" fill="#1E293B"/>
+  
+  <!-- Second truck in distance -->
+  <rect x="550" y="310" width="100" height="40" rx="4" fill="#374151"/>
+  <circle cx="580" cy="355" r="12" fill="#1E293B"/>
+  <circle cx="620" cy="355" r="12" fill="#1E293B"/>
+  
+  <!-- Warehouse/silo in background -->
+  <rect x="50" y="260" width="60" height="100" rx="2" fill="#334155"/>
+  <rect x="120" y="280" width="80" height="80" rx="2" fill="#475569"/>
+  <rect x="680" y="270" width="70" height="90" rx="2" fill="#334155"/>
+  <rect x="760" y="285" width="50" height="75" rx="2" fill="#475569"/>
+  
+  <!-- Light posts -->
+  <rect x="200" y="200" width="6" height="150" fill="#64748b"/>
+  <circle cx="203" cy="195" r="15" fill="#F59E0B" opacity="0.3"/>
+  <circle cx="203" cy="195" r="10" fill="#F59E0B" opacity="0.5"/>
+  
+  <rect x="600" y="200" width="6" height="150" fill="#64748b"/>
+  <circle cx="603" cy="195" r="15" fill="#F59E0B" opacity="0.3"/>
+  <circle cx="603" cy="195" r="10" fill="#F59E0B" opacity="0.5"/>
+  
+  <!-- Fog/atmosphere -->
+  <rect x="0" y="320" width="800" height="80" fill="#64748b" opacity="0.1"/>
+  
+  <!-- Text overlay -->
+  <text x="400" y="380" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle" opacity="0.7">Real-Time Vehicle Tracking & Monitoring</text>
+</svg>

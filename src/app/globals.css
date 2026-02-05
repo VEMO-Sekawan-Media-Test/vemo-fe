@@ -1,26 +1,153 @@
 @import "tailwindcss";
 
+/* ==================== LIGHT MODE (Default - White Theme) ==================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Nickel & Industrial Theme Colors */
+  --color-primary: #1E293B;      /* Deep Slate/Charcoal - Sidebar & Navbar */
+  --color-primary-light: #334155;
+  --color-primary-dark: #0F172A;
+  
+  --color-secondary: #F59E0B;     /* Amber Gold - Action buttons & accents */
+  --color-secondary-light: #FBBF24;
+  --color-secondary-dark: #D97706;
+  
+  /* Light Mode Backgrounds - Dominant White */
+  --color-background: #FFFFFF;     /* White - Dashboard background */
+  --color-surface: #F8FAFC;       /* Very light gray - Cards & Tables */
+  --color-surface-elevated: #FFFFFF; /* White - Elevated surfaces */
+  
+  /* Status Colors */
+  --color-pending: #0EA5E9;      /* Sky Blue - Pending approval */
+  --color-approved: #10B981;     /* Emerald Green - Final approved */
+  --color-rejected: #F43F5E;     /* Rose Red - Rejected */
+  --color-in-progress: #F59E0B;  /* Amber - In progress */
+  
+  /* Neutral Colors - Light Mode */
+  --color-gray-50: #FFFFFF;
+  --color-gray-100: #F8FAFC;
+  --color-gray-200: #E2E8F0;
+  --color-gray-300: #CBD5E1;
+  --color-gray-400: #94A3B8;
+  --color-gray-500: #64748B;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1E293B;
+  --color-gray-900: #0F172A;
+  
+  --background: var(--color-background);
+  --foreground: var(--color-gray-800);
+  --sidebar-bg: #1E293B;
+  --sidebar-text: #FFFFFF;
+  --main-content-bg: var(--color-background);
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+}
+
+/* ==================== DARK MODE (Nickel/Industrial Theme) ==================== */
+.dark {
+  /* Nickel & Industrial Theme Colors */
+  --color-primary: #1E293B;      /* Deep Slate/Charcoal */
+  --color-primary-light: #334155;
+  --color-primary-dark: #0F172A;
+  
+  --color-secondary: #F59E0B;     /* Amber Gold */
+  --color-secondary-light: #FBBF24;
+  --color-secondary-dark: #D97706;
+  
+  /* Dark Mode Backgrounds */
+  --color-background: #0F172A;   /* Very dark slate */
+  --color-surface: #1E293B;       /* Dark slate - Cards & Tables */
+  --color-surface-elevated: #334155; /* Lighter slate - Elevated surfaces */
+  
+  /* Status Colors - Same in dark mode */
+  --color-pending: #0EA5E9;
+  --color-approved: #10B981;
+  --color-rejected: #F43F5E;
+  --color-in-progress: #F59E0B;
+  
+  /* Neutral Colors - Dark Mode */
+  --color-gray-50: #1E293B;
+  --color-gray-100: #334155;
+  --color-gray-200: #475569;
+  --color-gray-300: #64748B;
+  --color-gray-400: #94A3B8;
+  --color-gray-500: #CBD5E1;
+  --color-gray-600: #E2E8F0;
+  --color-gray-700: #F1F5F9;
+  --color-gray-800: #F8FAFC;
+  --color-gray-900: #FFFFFF;
+  
+  --background: #0F172A;
+  --foreground: #F8FAFC;
+  --sidebar-bg: linear-gradient(to bottom, #1E293B, #0F172A);
+  --sidebar-text: #FFFFFF;
+  --main-content-bg: #162032; /* Slightly lighter than sidebar for contrast */
+  --card-bg: #1E293B;
+  --card-border: #334155;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-light: var(--color-secondary-light);
+  --color-secondary-dark: var(--color-secondary-dark);
+  --color-surface: var(--color-surface);
+  --color-surface-elevated: var(--color-surface-elevated);
+  --color-pending: var(--color-pending);
+  --color-approved: var(--color-approved);
+  --color-rejected: var(--color-rejected);
+  --color-in-progress: var(--color-in-progress);
+  --sidebar-bg: var(--sidebar-bg);
+  --sidebar-text: var(--sidebar-text);
+  --card-bg: var(--card-bg);
+  --card-border: var(--card-border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-500);
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
