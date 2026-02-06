@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![VEMO Logo](https://raw.githubusercontent.com/your-repo/vemo/main/vemo-fe/public/images/vemo_ic.png)
+![VEMO Logo](https://github.com/VEMO-Sekawan-Media-Test/vemo-fe/blob/master/dahsboard_screenshot.png)
 
 **Sistem monitoring dan pemesanan kendaraan perusahaan penambangan nikel**  
 dengan fitur dashboard, approval multi-level, dan laporan.
