@@ -1,4 +1,4 @@
-# VEMO - Vehicle Monitoring System
+<h1 align="center">VEMO - Vehicle Monitoring System</h1>
 
 <div align="center">
 
@@ -197,9 +197,9 @@ npm start
 
 | Username | Password | Role | Description |
 |----------|----------|------|-------------|
-| `admin_vemo` | `V3m0@dm1n#2024!` | 👑 ADMIN | Full system access |
-| `manager_1` | `M4n@gerV3m0#Sec!` | 👤 APPROVER | Level 1 approval |
-| `director_2` | `D1r3ct0rP3rm!t#Key` | 👤 APPROVER | Level 2 approval |
+| `admin_vemo` | `password123` | 👑 ADMIN | Full system access |
+| `manager_1` | `password123` | 👤 APPROVER | Level 1 approval |
+| `director_2` | `password123` | 👤 APPROVER | Level 2 approval |
 
 ---
 
@@ -211,29 +211,6 @@ npm start
 |------------|-----|
 | 🏠 Local | `http://localhost:3001` |
 | 🚂 Production | `https://vemo-be-production.up.railway.app` |
-
-### Endpoints Used
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/auth/login` | User authentication |
-| `GET` | `/vehicles` | Get all vehicles |
-| `POST` | `/vehicles` | Create vehicle |
-| `PATCH` | `/vehicles/:id` | Update vehicle |
-| `DELETE` | `/vehicles/:id` | Delete vehicle |
-| `GET` | `/bookings` | Get all bookings |
-| `POST` | `/bookings` | Create booking |
-| `PATCH` | `/bookings/:id/approve` | Approve booking |
-| `PATCH` | `/bookings/:id/reject` | Reject booking |
-| `PATCH` | `/bookings/:id/complete` | Complete booking |
-| `GET` | `/bookings/pending-approvals` | Pending approvals |
-| `GET` | `/maintenance` | Get maintenance records |
-| `POST` | `/maintenance` | Create maintenance |
-| `PATCH` | `/maintenance/:id/status` | Update status |
-| `GET` | `/reports/dashboard` | Dashboard statistics |
-| `GET` | `/reports/export` | Export to Excel |
-
----
 
 ## 📖 Usage Guide
 
