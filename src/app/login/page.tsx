@@ -10,42 +10,47 @@ import { SLIDESHOW_IMAGES } from '@/constants';
 
 type UserRole = 'ADMIN' | 'APPROVER';
 
-const Slideshow = ({ currentSlide }: { currentSlide: number }) => {
-  return (
-    <div className="relative h-48 bg-[#1E293B] overflow-hidden">
-      {SLIDESHOW_IMAGES.map((slide, index) => {
-        const isActive = index === currentSlide;
-        
-        return (
-          <div
-            key={index}
-            className={`absolute inset-0 ${isActive ? 'animate-zoom' : ''}`}
-            style={{
-              opacity: isActive ? 1 : 0,
-              transition: 'opacity 1.5s ease-in-out',
-            }}
-          >
-            <img 
-              src={slide.url} 
-              alt={slide.alt} 
-              className="w-full h-full object-cover"
-            />
-          </div>
-        );
-      })}
+const LIGHT_MODE_STYLES = {
+  '--background': '#FFFFFF',
+  '--foreground': '#334155',
+  '--card-bg': '#FFFFFF',
+  '--card-border': '#E2E8F0',
+  '--color-gray-400': '#94A3B8',
+  '--color-gray-100': '#F8FAFC',
+} as React.CSSProperties;
+
+const Slideshow = ({ currentSlide }: { currentSlide: number }) => (
+  <div className="relative h-48 bg-[#1E293B] overflow-hidden">
+    {SLIDESHOW_IMAGES.map((slide, index) => {
+      const isActive = index === currentSlide;
       
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1E293B]/60 via-[#1E293B]/40 to-[#1E293B]" />
-      
-      {/* Logo and text */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-8">
-        <Image src="/images/vemo_ic.png" alt="VEMO Logo" width={90} height={90} />
-        <h1 className="text-xl font-bold text-white mt-1">VEMO</h1>
-        <p className="text-gray-300 text-sm">Vehicle Monitoring System</p>
-      </div>
+      return (
+        <div
+          key={index}
+          className={`absolute inset-0 ${isActive ? 'animate-zoom' : ''}`}
+          style={{
+            opacity: isActive ? 1 : 0,
+            transition: 'opacity 1.5s ease-in-out',
+          }}
+        >
+          <img 
+            src={slide.url} 
+            alt={slide.alt} 
+            className="w-full h-full object-cover"
+          />
+        </div>
+      );
+    })}
+    
+    <div className="absolute inset-0 bg-gradient-to-b from-[#1E293B]/60 via-[#1E293B]/40 to-[#1E293B]" />
+    
+    <div className="relative z-10 flex flex-col items-center justify-center h-full px-8">
+      <Image src="/images/vemo_ic.png" alt="VEMO Logo" width={90} height={90} />
+      <h1 className="text-xl font-bold text-white mt-1">VEMO</h1>
+      <p className="text-gray-300 text-sm">Vehicle Monitoring System</p>
     </div>
-  );
-};
+  </div>
+);
 
 const RoleSelection = ({
   selectedRole,
@@ -87,6 +92,12 @@ export default function LoginPage() {
   const router = useRouter();
 
   useEffect(() => {
+    document.documentElement.classList.remove('dark');
+    document.body.style.backgroundColor = '#F8FAFC';
+    document.body.style.color = '#334155';
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % SLIDESHOW_IMAGES.length);
     }, 6000);
@@ -122,7 +133,22 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[#F8FAFC] text-[#334155]">
+    <div 
+      className="min-h-screen flex items-center justify-center p-4"
+      style={LIGHT_MODE_STYLES}
+    >
+      <style jsx global>{`
+        :root {
+          --background: #FFFFFF !important;
+          --foreground: #334155 !important;
+          --card-bg: #FFFFFF !important;
+          --card-border: #E2E8F0 !important;
+        }
+        .dark {
+          display: none !important;
+        }
+      `}</style>
+      
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <Slideshow currentSlide={currentSlide} />
@@ -147,6 +173,7 @@ export default function LoginPage() {
               onChange={e => setUsername(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Enter your username"
+              variant="light"
             />
 
             <Input
@@ -156,6 +183,7 @@ export default function LoginPage() {
               onChange={e => setPassword(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Enter your password"
+              variant="light"
             />
 
             <Button

@@ -1,38 +1,49 @@
 import React from 'react';
 import { clsx } from 'clsx';
-import { Search } from 'lucide-react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   icon?: React.ReactNode;
+  variant?: 'default' | 'light';
 }
 
-export function Input({ label, error, icon, className, ...props }: InputProps) {
+export function Input({ label, error, icon, className, variant = 'default', ...props }: InputProps) {
+  const isLight = variant === 'light';
+  const inputStyle = {
+    backgroundColor: isLight ? '#FFFFFF' : undefined,
+    color: isLight ? '#334155' : undefined,
+    borderColor: isLight ? '#E2E8F0' : undefined,
+  };
+
+  const iconStyle = {
+    color: isLight ? '#94A3B8' : undefined,
+  };
+
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-sm font-medium mb-1 text-[var(--color-gray-700)]">
+        <label className="block text-sm font-medium mb-1 text-[#334155]">
           {label}
         </label>
       )}
       <div className="relative w-full">
         {icon && (
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[var(--color-gray-400)]">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" style={iconStyle}>
             {icon}
           </div>
         )}
         <input
           className={clsx(
             'w-full px-3 py-2 border rounded-lg shadow-sm transition-colors',
-            'placeholder-[var(--color-gray-400)]',
+            'placeholder:text-gray-400',
             'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
-            'disabled:bg-[var(--color-gray-100)] disabled:cursor-not-allowed',
-            'bg-[var(--card-bg)] text-[var(--foreground)]',
-            error ? 'border-red-500' : 'border-[var(--card-border)]',
+            'disabled:bg-gray-100 disabled:cursor-not-allowed',
+            error ? 'border-red-500' : 'border-gray-200',
             icon && 'pl-10',
             className
           )}
+          style={inputStyle}
           {...props}
         />
       </div>
@@ -51,7 +62,7 @@ export function Select({ label, error, options, className, ...props }: SelectPro
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-sm font-medium mb-1 text-[var(--color-gray-700)]">
+        <label className="block text-sm font-medium mb-1 text-[#334155]">
           {label}
         </label>
       )}
@@ -59,9 +70,9 @@ export function Select({ label, error, options, className, ...props }: SelectPro
         className={clsx(
           'w-full px-3 py-2 border rounded-lg shadow-sm transition-colors cursor-pointer',
           'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
-          'disabled:bg-[var(--color-gray-100)] disabled:cursor-not-allowed',
-          'bg-[var(--card-bg)] text-[var(--foreground)]',
-          error ? 'border-red-500' : 'border-[var(--card-border)]',
+          'disabled:bg-gray-100 disabled:cursor-not-allowed',
+          'bg-white text-gray-700 border-gray-200',
+          error ? 'border-red-500' : 'border-gray-200',
           className
         )}
         {...props}
@@ -87,18 +98,18 @@ export function Textarea({ label, error, className, ...props }: TextareaProps) {
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-sm font-medium mb-1 text-[var(--color-gray-700)]">
+        <label className="block text-sm font-medium mb-1 text-[#334155]">
           {label}
         </label>
       )}
       <textarea
         className={clsx(
           'w-full px-3 py-2 border rounded-lg shadow-sm transition-colors',
-          'placeholder-[var(--color-gray-400)]',
+          'placeholder:text-gray-400',
           'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
-          'disabled:bg-[var(--color-gray-100)] disabled:cursor-not-allowed',
-          'bg-[var(--card-bg)] text-[var(--foreground)]',
-          error ? 'border-red-500' : 'border-[var(--card-border)]',
+          'disabled:bg-gray-100 disabled:cursor-not-allowed',
+          'bg-white text-gray-700 border-gray-200',
+          error ? 'border-red-500' : 'border-gray-200',
           className
         )}
         {...props}

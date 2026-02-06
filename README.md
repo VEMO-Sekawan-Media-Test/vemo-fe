@@ -1,165 +1,294 @@
-# VEMO - Vehicle Monitoring System (Frontend)
+# 🚗 VEMO - Vehicle Monitoring System (Frontend)
 
-A comprehensive vehicle monitoring and booking system for mining companies, built with Next.js.
+<div align="center">
 
-## Features
+![VEMO Logo](https://raw.githubusercontent.com/your-repo/vemo/main/vemo-fe/public/images/vemo_ic.png)
 
-- **Dashboard**: Overview with charts showing vehicle usage, bookings, and fuel consumption
-- **Vehicle Management**: Add, edit, and manage company vehicles
-- **Booking System**: Create and track vehicle booking requests
-- **Approval Workflow**: Multi-level approval (2 levels) for booking requests
-- **Maintenance Tracking**: Schedule and track vehicle maintenance
-- **Reports**: Generate reports with Excel export functionality
-- **Responsive Design**: Works on desktop and mobile devices
+**Frontend untuk sistem monitoring dan pemesanan kendaraan perusahaan penambangan nikel**  
+dengan fitur dashboard, approval multi-level, dan laporan.
 
-## Tech Stack
+[![Next.js](https://img.shields.io/badge/-Next.js-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![React](https://img.shields.io/badge/-React-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Charts**: Chart.js with react-chartjs-2
-- **HTTP Client**: Axios
-- **Date Handling**: date-fns
-- **Excel Export**: xlsx
-- **Icons**: Lucide React
+**🚀 Live Demo:**
+- 🌐 **Frontend**: [https://vemo-console.vercel.app/](https://vemo-console.vercel.app/)
+- 🎯 **Backend API**: [https://vemo-be-production.up.railway.app/](https://vemo-be-production.up.railway.app/)
 
-## Prerequisites
+[![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new)
 
-- Node.js 18+
-- npm or yarn
+</div>
 
-## Installation
+---
 
-1. Clone the repository
-2. Navigate to the project directory:
-   ```bash
-   cd vemo-fe
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Create environment file:
-   ```bash
-   cp .env.example .env.local
-   ```
-5. Update the API URL in `.env.local`:
-   ```
-   NEXT_PUBLIC_API_URL=http://localhost:3001
-   ```
-6. Run the development server:
-   ```bash
-   npm run dev
-   ```
-7. Open [http://localhost:3000](http://localhost:3000) in your browser
+## 📋 Table of Contents
 
-## Demo Credentials
+1. [🎯 Overview](#-overview)
+2. [✨ Features](#-features)
+3. [🛠️ Tech Stack](#️-tech-stack)
+4. [📁 Project Structure](#-project-structure)
+5. [🚀 Getting Started](#-getting-started)
+6. [🔐 Demo Credentials](#-demo-credentials)
+7. [📚 API Integration](#-api-integration)
+8. [📖 Usage Guide](#-usage-guide)
+9. [🏗️ Component Architecture](#️-component-architecture)
 
-| Username | Password | Role |
-|----------|----------|------|
-| admin | admin123 | Administrator |
-| approver1 | approver123 | Approver Level 1 |
-| approver2 | approver123 | Approver Level 2 |
+---
 
-## Project Structure
+## 🎯 Overview
+
+VEMO Frontend adalah aplikasi web responsif untuk mengelola:
+- 🚗 **Kendaraan** - CRUD kendaraan company dan rental
+- 📅 **Pemesanan** - Booking kendaraan dengan approval 2 level
+- ✅ **Persetujuan** - Multi-level approval workflow
+- 🔧 **Pemeliharaan** - Jadwal service & tracking
+- 📈 **Laporan** - Dashboard analytics & export Excel
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 📊 **Dashboard** | Charts untuk vehicle usage, bookings, fuel consumption |
+| 🚗 **Vehicle Management** | Add, edit, delete kendaraan company/rental |
+| 📅 **Booking System** | Create & track booking requests |
+| ✅ **Approval Workflow** | 2-level approval (Manager & Direktur) |
+| 🔧 **Maintenance** | Schedule & track pemeliharaan |
+| 📈 **Reports** | Analytics charts & Excel export |
+| 📱 **Responsive** | Support desktop & mobile |
+| 🎨 **Modern UI** | Tailwind CSS + smooth animations |
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| ⚛️ **Next.js 15** | React framework with App Router |
+| 🔷 **TypeScript** | Type-safe development |
+| 🎨 **Tailwind CSS** | Utility-first styling |
+| 📊 **Chart.js** | Data visualization |
+| 📡 **Axios** | HTTP client for API |
+| 📅 **date-fns** | Date manipulation |
+| 📊 **xlsx** | Excel export |
+| 🖼️ **Lucide React** | Icon library |
+| 🔐 **JWT** | Authentication |
+
+---
+
+## 📁 Project Structure
 
 ```
 vemo-fe/
+├── public/                      # Static assets
+│   └── images/                  # Images & logos
+│       ├── vemo_ic.png          # App logo
+│       ├── avatar.svg           # Default avatar
+│       ├── bglogin1.png         # Login background
+│       └── bglogin2.png         # Login slideshow
+│
 ├── src/
-│   ├── app/                    # Next.js App Router pages
-│   │   ├── dashboard/         # Dashboard page
-│   │   ├── bookings/         # Booking management
-│   │   ├── vehicles/         # Vehicle management
-│   │   ├── approvals/        # Approval workflow
-│   │   ├── maintenance/      # Maintenance tracking
-│   │   ├── reports/          # Reports & exports
-│   │   └── login/            # Login page
-│   ├── components/           # React components
-│   │   ├── ui/              # Reusable UI components
-│   │   ├── layout/          # Layout components
-│   │   └── auth/            # Auth components
-│   ├── context/             # React Context providers
-│   ├── lib/                 # API client and utilities
-│   └── types/               # TypeScript types
-├── public/                  # Static assets
-└── ...config files
+│   ├── app/                     # Next.js App Router
+│   │   ├── login/              # 🔐 Login page
+│   │   │   └── page.tsx        # Login with slideshow
+│   │   ├── dashboard/          # 📊 Dashboard
+│   │   │   └── page.tsx       # Stats & charts
+│   │   ├── vehicles/           # 🚗 Vehicle management
+│   │   │   └── page.tsx       # CRUD vehicles
+│   │   ├── bookings/           # 📅 Booking management
+│   │   │   └── page.tsx       # Create & view bookings
+│   │   ├── approvals/          # ✅ Approval workflow
+│   │   │   └── page.tsx       # Approve/reject bookings
+│   │   ├── maintenance/        # 🔧 Maintenance tracking
+│   │   │   └── page.tsx       # Schedule maintenance
+│   │   ├── reports/            # 📈 Reports & export
+│   │   │   └── page.tsx       # Analytics & Excel
+│   │   ├── layout.tsx         # Root layout
+│   │   ├── page.tsx           # Home redirect
+│   │   └── globals.css        # Global styles
+│   │
+│   ├── components/             # React components
+│   │   ├── ui/               # 📦 Reusable UI
+│   │   │   ├── Button.tsx    # Button component
+│   │   │   ├── Input.tsx     # Input/Select
+│   │   │   ├── Card.tsx      # Card wrapper
+│   │   │   ├── Modal.tsx      # Modal dialog
+│   │   │   ├── Badge.tsx     # Status badges
+│   │   │   ├── Toast.tsx     # Toast notifications
+│   │   │   └── ...           # More UI components
+│   │   │
+│   │   ├── layout/           # Layout components
+│   │   │   ├── DashboardLayout.tsx
+│   │   │   ├── Sidebar.tsx   # Navigation sidebar
+│   │   │   └── Navbar.tsx    # Top navigation
+│   │   │
+│   │   ├── charts/           # 📊 Chart components
+│   │   │   ├── LineChart.tsx
+│   │   │   └── DoughnutChart.tsx
+│   │   │
+│   │   └── auth/             # 🔐 Auth components
+│   │       └── AuthGuard.tsx
+│   │
+│   ├── context/              # 🔄 React Context
+│   │   ├── AuthContext.tsx   # Auth state management
+│   │   └── SidebarContext.tsx # Sidebar state
+│   │
+│   ├── lib/                   # 📁 Utilities
+│   │   └── api.ts            # Axios API client
+│   │
+│   ├── constants/             # 📝 Constants
+│   │   ├── index.ts          # Barrel export
+│   │   ├── login.ts          # Login constants
+│   │   ├── vehicles.ts       # Vehicle constants
+│   │   ├── bookings.ts       # Booking constants
+│   │   ├── maintenance.ts    # Maintenance constants
+│   │   └── reports.ts        # Reports constants
+│   │
+│   └── types/                # 🔷 TypeScript types
+│       └── index.ts          # Type definitions
+│
+├── middleware.ts             # Next.js middleware (auth)
+├── next.config.ts            # Next.js configuration
+├── tailwind.config.ts       # Tailwind configuration
+└── package.json
 ```
 
-## API Integration
+---
 
-The frontend communicates with the backend API at `http://localhost:3001`. Make sure the backend server is running before using the frontend.
+## 🚀 Getting Started
 
-### API Endpoints Used
+### Prerequisites
 
-- `POST /auth/login` - User authentication
-- `GET /vehicles` - Get all vehicles
-- `POST /vehicles` - Create vehicle
-- `PUT /vehicles/:id` - Update vehicle
-- `DELETE /vehicles/:id` - Delete vehicle
-- `GET /bookings` - Get all bookings
-- `POST /bookings` - Create booking
-- `POST /bookings/:id/approve` - Approve booking
-- `POST /bookings/:id/reject` - Reject booking
-- `GET /bookings/pending-approvals` - Get pending approvals
-- `GET /maintenance` - Get all maintenance records
-- `POST /maintenance` - Create maintenance record
-- `GET /reports/dashboard` - Get dashboard statistics
-- `GET /reports/bookings/export` - Export bookings to Excel
+| Requirement | Version |
+|------------|---------|
+| 🟢 Node.js | 18+ |
+| 📦 npm/yarn | Latest |
 
-## Usage Guide
+### Installation
 
-### Login
-1. Open the application
-2. Enter your username and password
-3. Click "Sign In"
+```bash
+# 1. Clone repository
+git clone https://github.com/your-repo/vemo.git
+cd vemo/vemo-fe
 
-### Dashboard
+# 2. Install dependencies
+npm install
+
+# 3. Create environment file
+cp .env.example .env.local
+
+# 4. Configure API URL
+echo "NEXT_PUBLIC_API_URL=http://localhost:3001" >> .env.local
+
+# 5. For production (Vercel)
+echo "NEXT_PUBLIC_API_URL=https://vemo-be-production.up.railway.app" >> .env.local
+
+# 6. Start development server
+npm run dev
+```
+
+### Build for Production
+
+```bash
+# Create production build
+npm run build
+
+# Start production server
+npm start
+```
+
+---
+
+## 🔐 Demo Credentials
+
+| Username | Password | Role | Description |
+|----------|----------|------|-------------|
+| `admin_vemo` | `V3m0@dm1n#2024!` | 👑 ADMIN | Full system access |
+| `manager_1` | `M4n@gerV3m0#Sec!` | 👤 APPROVER | Level 1 approval |
+| `director_2` | `D1r3ct0rP3rm!t#Key` | 👤 APPROVER | Level 2 approval |
+
+---
+
+## 📚 API Integration
+
+### Base URL
+
+| Environment | URL |
+|------------|-----|
+| 🏠 Local | `http://localhost:3001` |
+| 🚂 Production | `https://vemo-be-production.up.railway.app` |
+
+### Endpoints Used
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/auth/login` | User authentication |
+| `GET` | `/vehicles` | Get all vehicles |
+| `POST` | `/vehicles` | Create vehicle |
+| `PATCH` | `/vehicles/:id` | Update vehicle |
+| `DELETE` | `/vehicles/:id` | Delete vehicle |
+| `GET` | `/bookings` | Get all bookings |
+| `POST` | `/bookings` | Create booking |
+| `PATCH` | `/bookings/:id/approve` | Approve booking |
+| `PATCH` | `/bookings/:id/reject` | Reject booking |
+| `PATCH` | `/bookings/:id/complete` | Complete booking |
+| `GET` | `/bookings/pending-approvals` | Pending approvals |
+| `GET` | `/maintenance` | Get maintenance records |
+| `POST` | `/maintenance` | Create maintenance |
+| `PATCH` | `/maintenance/:id/status` | Update status |
+| `GET` | `/reports/dashboard` | Dashboard statistics |
+| `GET` | `/reports/export` | Export to Excel |
+
+---
+
+## 📖 Usage Guide
+
+### 🔐 Login
+1. Open VEMO at [https://vemo-console.vercel.app/](https://vemo-console.vercel.app/)
+2. Select role (Admin/Approver)
+3. Enter credentials
+4. Click "Sign In"
+
+### 📊 Dashboard
 The dashboard displays:
-- Total vehicles count
-- Active bookings count
-- Pending approvals count
-- Total fuel used
-- Monthly bookings trend chart
-- Vehicles by location chart
-- Bookings by vehicle type chart
-- Recent bookings table
+- 📈 Total vehicles & active bookings
+- ⏳ Pending approvals count
+- ⛽ Total fuel consumption
+- 📉 Monthly bookings trend chart
+- 🚗 Vehicles by location chart
+- 📋 Recent bookings table
 
-### Vehicle Management (Admin Only)
-1. Navigate to "Vehicles" from the sidebar
-2. Click "Add Vehicle" to create a new vehicle
-3. Fill in the vehicle details (model, plate number, type, ownership, location, fuel consumption)
-4. Click "Create" to save
+### 🚗 Vehicle Management (Admin Only)
+1. Navigate to "Kendaraan"
+2. Click "Jadwal Baru" to add vehicle
+3. Fill form (model, plate, type, ownership, location)
+4. Click "Create"
 
-### Booking Management
-1. Navigate to "Bookings" from the sidebar
-2. Click "New Booking" to create a booking
-3. Select a vehicle, enter driver name, choose approvers, and set dates
-4. The booking will be pending approval
+### 📅 Booking
+1. Navigate to "Pemesanan"
+2. Click "Pemesanan Baru"
+3. Select vehicle, driver, approvers, dates
+4. Submit - status will be "Menunggu Persetujuan"
 
-### Approval Workflow
-1. Navigate to "Approvals" from the sidebar
-2. View pending approval requests
-3. Click "Details" to see booking information
-4. Click "Approve" or "Reject" to process the request
-5. Two-level approval is required for final approval
+### ✅ Approval Workflow
+1. Navigate to "Persetujuan"
+2. View pending requests
+3. Click "Details" for info
+4. Click "Setuju" (Approve) or "Tolak" (Reject)
+5. Two approvals needed for final approval
 
-### Maintenance Tracking
-1. Navigate to "Maintenance" from the sidebar
-2. Click "Schedule Maintenance" to create a new maintenance record
-3. Fill in the details (vehicle, description, date, estimated cost, service type)
-4. Update status as needed (Scheduled → In Progress → Completed)
+### 🔧 Maintenance (Admin Only)
+1. Navigate to "Pemeliharaan"
+2. Click "Jadwal Baru" to schedule maintenance
+3. Status chips are clickable for Admin to update:
+   - 🟡 Dijadwalkan → 🔵 Sedang Berlangsung → 🟢 Selesai
 
-### Reports & Export
-1. Navigate to "Reports" from the sidebar
-2. View analytics and charts
+### 📈 Reports
+1. Navigate to "Laporan"
+2. View analytics charts
 3. Filter by date range
-4. Click "Export All" to download all bookings
-5. Click "Export Range" to export filtered data
+4. Click "Export" to download Excel
 
-## License
-
-This project is proprietary software.
-
-## Support
-
-For support, please contact the development team.
+</div>
