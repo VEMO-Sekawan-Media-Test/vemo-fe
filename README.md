@@ -14,19 +14,6 @@ dengan fitur dashboard, approval multi-level, dan laporan.
 
 ---
 
-## 📋 Table of Contents
-
-1. [🎯 Overview](#-overview)
-2. [✨ Features](#-features)
-3. [🛠️ Tech Stack](#️-tech-stack)
-4. [📁 Project Structure](#-project-structure)
-5. [🚀 Getting Started](#-getting-started)
-6. [🔐 Demo Credentials](#-demo-credentials)
-7. [📚 API Integration](#-api-integration)
-8. [📖 Usage Guide](#-usage-guide)
-9. [🏗️ Component Architecture](#️-component-architecture)
-
----
 
 ## 🎯 Overview
 
