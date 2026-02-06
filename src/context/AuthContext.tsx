@@ -28,16 +28,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
+      // Initialize cookie for middleware
+      document.cookie = `token=${storedToken}; path=/; max-age=604800`;
     }
     setIsLoading(false);
   }, []);
 
   const login = useCallback(async (username: string, password: string) => {
     const response = await authAPI.login({ username, password });
-    setToken(response.access_token);
-    setUser(response.user);
-    localStorage.setItem('token', response.access_token);
-    localStorage.setItem('user', JSON.stringify(response.user));
+    const { access_token, user: userData } = response;
+    
+    // Set state
+    setToken(access_token);
+    setUser(userData);
+    
+    // Set localStorage
+    localStorage.setItem('token', access_token);
+    localStorage.setItem('user', JSON.stringify(userData));
+    
+    // Set cookie for middleware to read
+    document.cookie = `token=${access_token}; path=/; max-age=604800`; // 7 days
   }, []);
 
   const logout = useCallback(() => {
@@ -45,6 +55,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    document.cookie = 'token=; path=/; max-age=0';
   }, []);
 
   const isAdmin = user?.role === 'ADMIN';

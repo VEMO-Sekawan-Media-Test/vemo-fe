@@ -20,6 +20,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { useSidebar } from '@/context/SidebarContext';
+import { useAuth } from '@/context/AuthContext';
 
 interface NavItem {
   label: string;
@@ -41,6 +42,7 @@ export function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { isCollapsed, toggleSidebar, isDark, isMobileOpen, setMobileOpen } = useSidebar();
+  const { logout } = useAuth();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [userName, setUserName] = useState('');
   const [userRole, setUserRole] = useState('');
@@ -69,9 +71,9 @@ export function Sidebar() {
   });
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.href = '/login';
+    logout();
+    // Use location.replace to replace history entry, preventing back navigation
+    window.location.replace('/login');
   };
 
   const sidebarBg = isDark 

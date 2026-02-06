@@ -33,11 +33,11 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    // Suppress 401 errors in console for login endpoint (expected when credentials are wrong)
+    if (error.response?.status === 401 && !error.config.url?.includes('/auth/login')) {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        window.location.href = '/login';
       }
     }
     return Promise.reject(error);
