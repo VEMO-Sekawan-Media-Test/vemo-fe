@@ -94,11 +94,11 @@ export const bookingsAPI = {
     return response.data;
   },
   approve: async (id: number): Promise<Booking> => {
-    const response = await api.post(`/bookings/${id}/approve`);
+    const response = await api.patch(`/bookings/${id}/approve`);
     return response.data;
   },
   reject: async (id: number): Promise<Booking> => {
-    const response = await api.post(`/bookings/${id}/reject`);
+    const response = await api.patch(`/bookings/${id}/reject`);
     return response.data;
   },
   complete: async (id: number, data: CompleteBookingRequest): Promise<Booking> => {
@@ -120,6 +120,9 @@ export const bookingsAPI = {
 };
 
 // Maintenance API
+
+export type MaintenanceStatus = 'SCHEDULED' | 'IN_PROGRESS' | 'COMPLETED' | 'CANCELLED';
+
 export const maintenanceAPI = {
   getAll: async (): Promise<Maintenance[]> => {
     const response = await api.get('/maintenance');
@@ -135,6 +138,10 @@ export const maintenanceAPI = {
   },
   update: async (id: number, data: Partial<Maintenance>): Promise<Maintenance> => {
     const response = await api.put(`/maintenance/${id}`, data);
+    return response.data;
+  },
+  updateStatus: async (id: number, status: MaintenanceStatus): Promise<Maintenance> => {
+    const response = await api.patch(`/maintenance/${id}/status`, { status });
     return response.data;
   },
   delete: async (id: number): Promise<void> => {

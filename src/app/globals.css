@@ -1,28 +1,24 @@
 @import "tailwindcss";
 
-/* ==================== LIGHT MODE (Default - White Theme) ==================== */
+/* LIGHT MODE  */
 :root {
-  /* Nickel & Industrial Theme Colors */
-  --color-primary: #1E293B;      /* Deep Slate/Charcoal - Sidebar & Navbar */
+  --color-primary: #1E293B;    
   --color-primary-light: #334155;
   --color-primary-dark: #0F172A;
   
-  --color-secondary: #F59E0B;     /* Amber Gold - Action buttons & accents */
+  --color-secondary: #F59E0B;     
   --color-secondary-light: #FBBF24;
   --color-secondary-dark: #D97706;
   
-  /* Light Mode Backgrounds - Dominant White */
-  --color-background: #FFFFFF;     /* White - Dashboard background */
-  --color-surface: #F8FAFC;       /* Very light gray - Cards & Tables */
-  --color-surface-elevated: #FFFFFF; /* White - Elevated surfaces */
+  --color-background: #FFFFFF;   
+  --color-surface: #F8FAFC;      
+  --color-surface-elevated: #FFFFFF; 
   
-  /* Status Colors */
-  --color-pending: #0EA5E9;      /* Sky Blue - Pending approval */
-  --color-approved: #10B981;     /* Emerald Green - Final approved */
-  --color-rejected: #F43F5E;     /* Rose Red - Rejected */
-  --color-in-progress: #F59E0B;  /* Amber - In progress */
+  --color-pending: #0EA5E9;      
+  --color-approved: #10B981;   
+  --color-rejected: #F43F5E;     
+  --color-in-progress: #F59E0B;
   
-  /* Neutral Colors - Light Mode */
   --color-gray-50: #FFFFFF;
   --color-gray-100: #F8FAFC;
   --color-gray-200: #E2E8F0;
@@ -43,29 +39,25 @@
   --card-border: #E2E8F0;
 }
 
-/* ==================== DARK MODE (Nickel/Industrial Theme) ==================== */
+/* DARK MODE */
 .dark {
-  /* Nickel & Industrial Theme Colors */
-  --color-primary: #1E293B;      /* Deep Slate/Charcoal */
+  --color-primary: #1E293B;    
   --color-primary-light: #334155;
   --color-primary-dark: #0F172A;
   
-  --color-secondary: #F59E0B;     /* Amber Gold */
+  --color-secondary: #F59E0B;  
   --color-secondary-light: #FBBF24;
   --color-secondary-dark: #D97706;
   
-  /* Dark Mode Backgrounds */
-  --color-background: #0F172A;   /* Very dark slate */
-  --color-surface: #1E293B;       /* Dark slate - Cards & Tables */
-  --color-surface-elevated: #334155; /* Lighter slate - Elevated surfaces */
+  --color-background: #0F172A;  
+  --color-surface: #1E293B;     
+  --color-surface-elevated: #334155; 
   
-  /* Status Colors - Same in dark mode */
   --color-pending: #0EA5E9;
   --color-approved: #10B981;
   --color-rejected: #F43F5E;
   --color-in-progress: #F59E0B;
   
-  /* Neutral Colors - Dark Mode */
   --color-gray-50: #1E293B;
   --color-gray-100: #334155;
   --color-gray-200: #475569;
@@ -81,7 +73,7 @@
   --foreground: #F8FAFC;
   --sidebar-bg: linear-gradient(to bottom, #1E293B, #0F172A);
   --sidebar-text: #FFFFFF;
-  --main-content-bg: #162032; /* Slightly lighter than sidebar for contrast */
+  --main-content-bg: #162032; 
   --card-bg: #1E293B;
   --card-border: #334155;
 }
@@ -150,4 +142,31 @@ body {
 .card-hover:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+/* Login slideshow animations */
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-zoom-in {
+  animation: zoomIn 6s linear infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }

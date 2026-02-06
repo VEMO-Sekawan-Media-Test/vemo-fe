@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "VEMO - Vehicle Monitoring System",
+  title: "VEMO",
   description: "Vehicle monitoring and booking system for mining company",
 };
 

@@ -40,8 +40,7 @@ const navItems: NavItem[] = [
 export function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { isCollapsed, toggleSidebar, isDark } = useSidebar();
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const { isCollapsed, toggleSidebar, isDark, isMobileOpen, setMobileOpen } = useSidebar();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [userName, setUserName] = useState('');
   const [userRole, setUserRole] = useState('');
@@ -75,10 +74,6 @@ export function Sidebar() {
     window.location.href = '/login';
   };
 
-  const sidebarWidth = isCollapsed ? 'w-20' : 'w-64';
-  const navItemClass = isCollapsed ? 'justify-center px-2' : 'px-4';
-
-  // Dark mode sidebar styles - solid colors
   const sidebarBg = isDark 
     ? 'bg-slate-900' 
     : 'bg-gray-800';
@@ -91,39 +86,23 @@ export function Sidebar() {
   const roleTextColor = isDark ? 'text-amber-400' : 'text-amber-400';
   const logoBg = isDark ? 'bg-white' : 'bg-white';
   const avatarBg = isDark ? 'bg-slate-700' : 'bg-slate-100';
-  const toggleBg = 'bg-amber-500 hover:bg-amber-400';
 
   return (
     <>
-      {/* Mobile menu button */}
-      <button
-        className={clsx(
-          'lg:hidden fixed top-4 z-50 p-2 rounded-lg shadow-md transition-colors cursor-pointer',
-          isDark ? 'bg-white text-gray-900' : 'bg-white text-gray-900'
-        )}
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-      >
-        <Menu className="w-6 h-6" />
-      </button>
-
-      {/* Mobile overlay */}
       {isMobileOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={() => setIsMobileOpen(false)}
+          onClick={() => setMobileOpen(false)}
         />
       )}
 
-      {/* Sidebar - Simple Navigation Only */}
       <aside
         className={clsx(
-          'fixed inset-y-0 left-0 z-40 text-white transform transition-all duration-300 ease-in-out lg:translate-x-0 flex flex-col',
+          'hidden lg:flex fixed inset-y-0 left-0 z-40 text-white flex-col',
           sidebarBg,
-          sidebarWidth,
-          isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+          isCollapsed ? 'w-20' : 'w-64'
         )}
       >
-        {/* Logo Section */}
         <div className={clsx('flex items-center border-b', sidebarBorder, isCollapsed ? 'px-2 py-4 justify-center' : 'px-6 py-4')}>
           <div className="flex items-center gap-3">
             <div className={clsx('w-10 h-10 rounded-xl mt-1 p-1 flex-shrink-0', logoBg)}>
@@ -144,7 +123,6 @@ export function Sidebar() {
           </div>
         </div>
 
-        {/* Collapse Toggle Button */}
         <button
           onClick={toggleSidebar}
           className="hidden lg:flex absolute -right-3 top-16 w-6 h-6 rounded-full items-center justify-center text-white shadow-lg transition-colors cursor-pointer z-50"
@@ -153,7 +131,6 @@ export function Sidebar() {
           {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
         </button>
 
-        {/* Navigation */}
         <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
           {filteredNavItems.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
@@ -161,10 +138,9 @@ export function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setIsMobileOpen(false)}
                 className={clsx(
                   'flex items-center gap-3 py-3 rounded-xl transition-all duration-200 cursor-pointer',
-                  navItemClass,
+                  isCollapsed ? 'justify-center px-2' : 'px-4',
                   isActive
                     ? navActiveBg
                     : clsx(navTextColor, navHoverBg, 'hover:text-white')
@@ -178,9 +154,7 @@ export function Sidebar() {
           })}
         </nav>
 
-        {/* User Section at Bottom */}
         <div className={clsx('px-3 py-4 border-t', userSectionBorder)}>
-          {/* User Info */}
           <div className={clsx('flex items-center gap-3 mb-2', isCollapsed ? 'justify-center' : '')}>
             <div className={clsx('w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0', avatarBg)}>
               <Image
@@ -199,12 +173,11 @@ export function Sidebar() {
             )}
           </div>
 
-          {/* Logout Button */}
           <button
             onClick={() => setShowLogoutModal(true)}
             className={clsx(
               'flex items-center gap-3 w-full py-3 rounded-xl transition-all duration-200 cursor-pointer',
-              navItemClass,
+              isCollapsed ? 'justify-center px-2' : 'px-4',
               navTextColor,
               'hover:bg-red-500/10 hover:text-red-400'
             )}
@@ -216,7 +189,95 @@ export function Sidebar() {
         </div>
       </aside>
 
-      {/* Logout Confirmation Modal */}
+      <aside
+        className={clsx(
+          'lg:hidden fixed inset-0 z-50 text-white transform transition-all duration-300 ease-in-out flex flex-col',
+          sidebarBg,
+          isMobileOpen ? 'translate-x-0' : 'translate-x-full'
+        )}
+      >
+        <div className={clsx('flex items-center justify-between border-b px-6 py-4', sidebarBorder)}>
+          <div className="flex items-center gap-3">
+            <div className={clsx('w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0', logoBg)}>
+              <Image
+                src="/images/vemo_ic.png"
+                alt="VEMO Logo"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-lg font-bold text-white">VEMO</h1>
+              <p className="text-xs text-gray-400">Vehicle Monitoring System</p>
+            </div>
+          </div>
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="p-2 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <nav className="flex-1 px-6 py-8 space-y-2 overflow-y-auto">
+          {filteredNavItems.map((item) => {
+            const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className={clsx(
+                  'flex items-center gap-4 py-4 rounded-xl transition-all duration-200 cursor-pointer',
+                  isCollapsed ? 'lg:justify-center lg:px-2' : 'px-4',
+                  isActive
+                    ? navActiveBg
+                    : clsx(navTextColor, navHoverBg, 'hover:text-white')
+                )}
+              >
+                <div className="flex-shrink-0">{item.icon}</div>
+                <span className="font-medium text-lg">{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className={clsx('px-6 py-4 border-t', sidebarBorder)}>
+          <div className="flex items-center gap-3 mb-4 justify-center">
+            <div className={clsx('w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0', avatarBg)}>
+              <Image
+                src="/images/avatar.svg"
+                alt="Profile"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+              />
+            </div>
+            <div className="text-center">
+              <p className={clsx('text-base font-medium', userTextColor)}>{userName || 'User'}</p>
+              <p className={clsx('text-sm', roleTextColor)}>{isAdmin ? 'Administrator' : 'Persetujuan'}</p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => {
+              setMobileOpen(false);
+              setShowLogoutModal(true);
+            }}
+            className={clsx(
+              'flex items-center justify-center gap-3 w-full py-4 rounded-xl transition-all duration-200 cursor-pointer',
+              'px-4',
+              navTextColor,
+              'hover:bg-red-500/10 hover:text-red-400'
+            )}
+          >
+            <LogOut className="w-5 h-5 flex-shrink-0 cursor-pointer" />
+            <span className="font-medium text-lg">Keluar</span>
+          </button>
+        </div>
+      </aside>
+
       {showLogoutModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
           <div className={clsx(

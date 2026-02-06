@@ -3,12 +3,12 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import { useSidebar } from '@/context/SidebarContext';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Menu } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export function Navbar() {
   const pathname = usePathname();
-  const { isDark, toggleTheme, isCollapsed } = useSidebar();
+  const { isDark, toggleTheme, isCollapsed, isMobileOpen, toggleMobileMenu } = useSidebar();
 
   const getPageTitle = () => {
     const path = pathname;
@@ -35,7 +35,6 @@ export function Navbar() {
   const pageTitle = getPageTitle();
   const pageDescription = getPageDescription();
 
-  // Dynamic styles based on theme
   const navBg = isDark ? 'bg-slate-800' : 'bg-white';
   const navBorder = isDark ? 'border-slate-700' : 'border-slate-200';
   const titleColor = isDark ? 'text-white' : 'text-gray-900';
@@ -48,21 +47,28 @@ export function Navbar() {
 
   return (
     <nav className={clsx(
-      'fixed top-0 left-0 right-0 z-30 px-6 py-3 border-b transition-all duration-300',
+      'fixed top-0 left-0 right-0 z-30 px-4 lg:px-6 py-3 border-b transition-all duration-300',
       navMargin,
       navBg,
       navBorder
     )}>
-      <div className="flex items-center justify-between">
-        {/* Page Title & Description */}
-        <div className="flex-1">
+      <div className="flex items-center justify-between gap-4">
+        <button
+          className="lg:hidden p-2 rounded-lg shadow-md transition-colors cursor-pointer flex-shrink-0"
+          style={{ backgroundColor: isDark ? '#1E293B' : '#FFFFFF' }}
+          onClick={toggleMobileMenu}
+        >
+          <Menu className="w-6 h-6" style={{ color: isDark ? '#FFFFFF' : '#1E293B' }} />
+        </button>
+        
+        <div className="flex-1 min-w-0">
           {pageTitle && (
             <>
-              <h1 className={clsx('text-2xl font-bold', titleColor)}>
+              <h1 className={clsx('text-xl lg:text-2xl font-bold truncate', titleColor)}>
                 {pageTitle}
               </h1>
               {pageDescription && (
-                <p className={clsx('text-sm mt-1', descColor)}>
+                <p className={clsx('text-xs lg:text-sm mt-0.5 lg:mt-1 truncate', descColor)}>
                   {pageDescription}
                 </p>
               )}
@@ -70,7 +76,6 @@ export function Navbar() {
           )}
         </div>
 
-        {/* Right Section - Theme Toggle Only */}
         <button
           onClick={toggleTheme}
           className={clsx(

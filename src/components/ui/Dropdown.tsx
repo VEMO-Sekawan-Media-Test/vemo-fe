@@ -52,13 +52,11 @@ export function Dropdown({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Calculate position
   useEffect(() => {
     if (isOpen && buttonRef.current && listboxRef.current) {
       const buttonRect = buttonRef.current.getBoundingClientRect();
       const listbox = listboxRef.current;
       
-      // Reset styles first
       listbox.style.position = 'fixed';
       listbox.style.left = `${buttonRect.left}px`;
       listbox.style.top = `${buttonRect.bottom + 4}px`;
@@ -115,7 +113,6 @@ export function Dropdown({
             role="listbox"
             className="rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] shadow-xl overflow-hidden"
           >
-            {/* Search input */}
             <div className="p-2 border-b border-[var(--card-border)]">
               <input
                 type="text"
@@ -131,7 +128,6 @@ export function Dropdown({
               />
             </div>
 
-            {/* Options list */}
             <div className="max-h-48 overflow-y-auto p-1">
               {filteredOptions.length === 0 ? (
                 <div className="px-3 py-2 text-sm text-[var(--color-gray-500)] text-center">

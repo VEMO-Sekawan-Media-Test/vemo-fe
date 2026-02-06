@@ -18,7 +18,6 @@ interface ToastContainerProps {
   onRemove: (id: string) => void;
 }
 
-// Toast item component
 function ToastItem({ toast, onRemove }: { toast: Toast; onRemove: (id: string) => void }) {
   const icons = {
     success: <CheckCircle className="w-5 h-5 text-green-500" />,
@@ -67,7 +66,6 @@ function ToastItem({ toast, onRemove }: { toast: Toast; onRemove: (id: string) =
   );
 }
 
-// Toast container (rendered via portal)
 export function ToastContainer({ toasts, onRemove }: ToastContainerProps) {
   const [mounted, setMounted] = useState(false);
 
@@ -94,7 +92,6 @@ export function ToastContainer({ toasts, onRemove }: ToastContainerProps) {
   );
 }
 
-// Toast context and provider
 interface ToastContextValue {
   showToast: (message: string, type?: ToastType) => void;
   showSuccess: (message: string) => void;
@@ -112,7 +109,6 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     const id = Math.random().toString(36).substring(2, 9);
     setToasts((prev) => [...prev, { id, message, type }]);
 
-    // Auto-remove after 5 seconds
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
     }, 5000);
@@ -135,7 +131,6 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Custom hook to use toast
 export function useToast() {
   const context = React.useContext(ToastContext);
   if (!context) {

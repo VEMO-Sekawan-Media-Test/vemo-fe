@@ -1,5 +1,3 @@
-// Types for the application
-
 export type Role = 'ADMIN' | 'APPROVER';
 
 export interface User {

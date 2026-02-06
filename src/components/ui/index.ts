@@ -10,3 +10,7 @@ export { DatePicker } from './DatePicker';
 export { DateTimePicker } from './DateTimePicker';
 export { DateRangePicker } from './DateRangePicker';
 export { Dropdown } from './Dropdown';
+export { StatsCard } from './StatsCard';
+export { default as DataTable } from './DataTable';
+export { default as LoadingSpinner, FullPageLoading, CardLoading } from './LoadingSpinner';
+export { default as StatusBadge, ReportStatusBadge } from './StatusBadge';

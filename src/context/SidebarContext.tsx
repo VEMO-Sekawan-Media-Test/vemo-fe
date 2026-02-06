@@ -8,13 +8,17 @@ interface SidebarContextType {
   setCollapsed: (collapsed: boolean) => void;
   isDark: boolean;
   toggleTheme: () => void;
+  isMobileOpen: boolean;
+  setMobileOpen: (open: boolean) => void;
+  toggleMobileMenu: () => void;
 }
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
 export function SidebarProvider({ children }: { children: ReactNode }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isDark, setIsDark] = useState(true); // Default to dark mode
+  const [isDark, setIsDark] = useState(true);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -27,7 +31,6 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
           document.documentElement.classList.remove('dark');
         }
       } else {
-        // Default to dark mode
         document.documentElement.classList.add('dark');
       }
     }
@@ -35,6 +38,10 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileOpen((prev) => !prev);
   };
 
   const setCollapsed = (collapsed: boolean) => {
@@ -55,7 +62,7 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <SidebarContext.Provider value={{ isCollapsed, toggleSidebar, setCollapsed, isDark, toggleTheme }}>
+    <SidebarContext.Provider value={{ isCollapsed, toggleSidebar, setCollapsed, isDark, toggleTheme, isMobileOpen, setMobileOpen: setIsMobileOpen, toggleMobileMenu }}>
       {children}
     </SidebarContext.Provider>
   );

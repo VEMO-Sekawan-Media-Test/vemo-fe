@@ -30,7 +30,6 @@ export function Badge({ children, variant = 'gray', size = 'md' }: BadgeProps) {
   );
 }
 
-// Status badges for bookings - Nickel Theme
 export function BookingStatusBadge({ status }: { status: number }) {
   const config: Record<number, { label: string; variant: 'pending' | 'approved' | 'rejected' | 'lvl1' }> = {
     0: { label: 'Pending', variant: 'pending' as const },
@@ -56,7 +55,6 @@ export function BookingStatusBadge({ status }: { status: number }) {
   );
 }
 
-// Status badges for maintenance
 export function MaintenanceStatusBadge({ status }: { status: string }) {
   const config: Record<string, { label: string; variant: 'scheduled' | 'in_progress' | 'completed' | 'cancelled' }> = {
     SCHEDULED: { label: 'Scheduled', variant: 'scheduled' as const },
