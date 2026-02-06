@@ -1,22 +1,14 @@
-# 🚗 VEMO - Vehicle Monitoring System (Frontend)
+# VEMO - Vehicle Monitoring System
 
 <div align="center">
 
 ![VEMO Logo](https://raw.githubusercontent.com/your-repo/vemo/main/vemo-fe/public/images/vemo_ic.png)
 
-**Frontend untuk sistem monitoring dan pemesanan kendaraan perusahaan penambangan nikel**  
+**Sistem monitoring dan pemesanan kendaraan perusahaan penambangan nikel**  
 dengan fitur dashboard, approval multi-level, dan laporan.
 
-[![Next.js](https://img.shields.io/badge/-Next.js-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
-[![React](https://img.shields.io/badge/-React-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-
-**🚀 Live Demo:**
-- 🌐 **Frontend**: [https://vemo-console.vercel.app/](https://vemo-console.vercel.app/)
-- 🎯 **Backend API**: [https://vemo-be-production.up.railway.app/](https://vemo-be-production.up.railway.app/)
-
-[![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new)
+🌐 **Frontend**: [https://vemo-console.vercel.app/](https://vemo-console.vercel.app/)
+🎯 **Backend API**: [https://vemo-be-production.up.railway.app/](https://vemo-be-production.up.railway.app/)
 
 </div>
 
